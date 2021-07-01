@@ -28,14 +28,14 @@ console.log("Chilometri da percorrere", km);
 var age = parseInt(prompt("Quanti anni hai?"));
 console.log("Anni del passeggero", age);
 
-var price = km * 0.21;
-console.log("Prezzo biglietto", price, " €");
-document.getElementById("price").innerHTML = price + " €";
+var price = (km * 0.21);
 
-var underageDiscount = price / 100 * 20;
+// console.log("Prezzo biglietto", price, " €");
+
+var underageDiscount = (price / 100 * 20).toFixed(2);
 // console.log("Sconto da minorenne", underageDiscount);
 
-var over65Discount = price / 100 * 40;
+var over65Discount = (price / 100 * 40).toFixed(2);
 // console.log("Sconto per over 65", over65Discount);
 
 
@@ -43,15 +43,29 @@ var over65Discount = price / 100 * 40;
 
 if (age < 18) {
     console.log("Prezzo biglietto scontato per minorenne", price - underageDiscount, " €");
+    document.getElementById("price").innerHTML = price - underageDiscount + " €";
+
     
 } else {
     console.log("Prezzo intero del biglietto", price);
+    document.getElementById("price").innerHTML = price + " €";
 }
 
 // condizione se over 65
 
 if (age >= 65) {
-    console.log("Prezzo scontato per gli over65", price - over65Discount);
+    console.log("Prezzo scontato per gli over65", price - over65Discount, " €");
+    document.getElementById("price").innerHTML = price - over65Discount + " €";
 } else {
-    console.log("Prezzo intero del biglietto", price);
+    console.log("Prezzo intero del biglietto", price, " €");
+    document.getElementById("price").innerHTML = price + " €";
 }
+
+
+// validation
+// km 
+
+if (km <= 0) {
+    alert("Hai inserito dei chilometri non validi!")
+}
+
