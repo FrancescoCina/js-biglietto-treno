@@ -19,6 +19,7 @@ PASSAGGI:
 4 - applicare sconto per minorenni (if minorenne la variabile price *20% di sconto)
 5 - applicare sconto per over 65 - (if over65 la variabile price *40% di sconto)
 6 - stampare prezzo con massimo due decimali --> console.log del price - max due numeri decimali -
+
 */
 
 
@@ -28,27 +29,33 @@ console.log("Chilometri da percorrere", km);
 var age = parseInt(prompt("Quanti anni hai?"));
 console.log("Anni del passeggero", age);
 
-var price = (km * 0.21);
+var price = (km * 0.21).toFixed(2);
+document.getElementById("price").innerHTML = price + " €";
 
 // console.log("Prezzo biglietto", price, " €");
 
-var underageDiscount = (price / 100 * 20).toFixed(2);
+var underageDiscount = (price * 0.20).toFixed(2);
 // console.log("Sconto da minorenne", underageDiscount);
 
-var over65Discount = (price / 100 * 40).toFixed(2);
+var over65Discount = (price * 0.40).toFixed(2);
 // console.log("Sconto per over 65", over65Discount);
 
+// variabili con prezzo già calcolato
+
+var underagePriceDiscount = (price - underageDiscount).toFixed(2);
+
+var overPriceDiscount = (price - over65Discount).toFixed(2);
 
 // condizione se minorenne
 
-if (age < 18) {    
-    console.log("Prezzo biglietto scontato per minorenne", price - underageDiscount, " €");
-    document.getElementById("price").innerHTML = price - underageDiscount + " €";
-    
+if (age < 18) {
+    console.log("Prezzo biglietto scontato per minorenne", underagePriceDiscount, " €");
+    document.getElementById("price").innerHTML = underagePriceDiscount + " €";
 } else {
-    console.log("Prezzo intero del biglietto", price);
-    document.getElementById("price").innerHTML = price + " €";
+    console.log("Prezzo biglietto intero", price, " €");
 }
+
+
 
 // condizione se over 65
 
@@ -56,8 +63,7 @@ if (age >= 65) {
     console.log("Prezzo scontato per gli over65", price - over65Discount, " €");
     document.getElementById("price").innerHTML = price - over65Discount + " €";
 } else {
-    console.log("Prezzo intero del biglietto", price, " €");
-    document.getElementById("price").innerHTML = price + " €";
+    console.log("Prezzo biglietto intero", price, " €");
 }
 
 
@@ -66,7 +72,12 @@ if (km <= 0) {
     alert("Hai inserito dei chilometri non validi!")
 }
 
-// validation age 
+// validation age
 if (age <= 10) {
     alert("Sei troppo piccolo!! Il tuo biglietto deve essere prenotato da un maggiorenne!!")
-}
+}   
+
+// validation number 
+if (isNaN(km) || isNaN(age)) {
+    alert("Nei campi compilati, non hai inserito un numero")
+} 
