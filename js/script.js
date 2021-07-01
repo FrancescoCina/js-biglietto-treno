@@ -14,7 +14,7 @@ L'output del prezzo finale va stampato in forma umana (con massimo due decimali,
 PASSAGGI:
 
 1 - richiediamo numero di chilometri che l'utente deve percorrere (var = km + (parseint)prompt)
-2 - richiesdiamo l'età del passeggero (var = age + parseint(prompt))
+2 - richiediamo l'età del passeggero (var = age + parseint(prompt))
 3 - definire il prezzo del biglietto seguendo le regole (var prezzo = alla variabile km * 0.21€/km)
 4 - applicare sconto per minorenni (if minorenne la variabile price *20% di sconto)
 5 - applicare sconto per over 65 - (if over65 la variabile price *40% di sconto)
@@ -31,3 +31,27 @@ console.log("Anni del passeggero", age);
 var price = km * 0.21;
 console.log("Prezzo biglietto", price, " €");
 document.getElementById("price").innerHTML = price + " €";
+
+var underageDiscount = price / 100 * 20;
+// console.log("Sconto da minorenne", underageDiscount);
+
+var over65Discount = price / 100 * 40;
+// console.log("Sconto per over 65", over65Discount);
+
+
+// condizione se minorenne
+
+if (age < 18) {
+    console.log("Prezzo biglietto scontato per minorenne", price - underageDiscount, " €");
+    
+} else {
+    console.log("Prezzo intero del biglietto", price);
+}
+
+// condizione se over 65
+
+if (age >= 65) {
+    console.log("Prezzo scontato per gli over65", price - over65Discount);
+} else {
+    console.log("Prezzo intero del biglietto", price);
+}
