@@ -41,10 +41,9 @@ var over65Discount = (price / 100 * 40).toFixed(2);
 
 // condizione se minorenne
 
-if (age < 18) {
+if (age < 18) {    
     console.log("Prezzo biglietto scontato per minorenne", price - underageDiscount, " €");
     document.getElementById("price").innerHTML = price - underageDiscount + " €";
-
     
 } else {
     console.log("Prezzo intero del biglietto", price);
@@ -62,10 +61,12 @@ if (age >= 65) {
 }
 
 
-// validation
-// km 
-
+// validation km
 if (km <= 0) {
     alert("Hai inserito dei chilometri non validi!")
 }
 
+// validation age 
+if (age <= 10) {
+    alert("Sei troppo piccolo!! Il tuo biglietto deve essere prenotato da un maggiorenne!!")
+}
